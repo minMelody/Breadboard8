@@ -1,9 +1,10 @@
-import sys
-import struct
+# builds a ROM image file
+# based on Ben Eater's eeprom programmer scripts https://github.com/beneater/eeprom-programmer/tree/master
+
+from sys import argv
 
 outFilename = "rom.out"
-createDecodedFile = 0
-if len(sys.argv) > 1: outFilename = sys.argv[2]
+if len(argv) > 1: outFilename = argv[1]
 
 # define constants
 HLT = 0b1000000000000000  # Halt clock
@@ -22,7 +23,7 @@ CE  = 0b0000000000001000  # Program counter enable
 CO  = 0b0000000000000100  # Program counter out
 J   = 0b0000000000000010  # Jump (program counter in)
 
-# init micro code
+# initialize micro code
 ucode = [
     [MI|CO,  RO|II|CE,  0,      0,      0,         0, 0, 0],   # 0000 - NOP
     [MI|CO,  RO|II|CE,  IO|MI,  RO|AI,  0,         0, 0, 0],   # 0001 - LDA
