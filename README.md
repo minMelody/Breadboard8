@@ -15,3 +15,7 @@ The cpu runs using a program binary and a rom image with the command `./bb8 <pro
 Meanwhile a working jump if carry will execute on a loop.
 
 ![example of working jump carry with Breadboard8mini](screenshot-working-jc.png)
+
+## TODO
+- [ ] implement JC
+- [ ] implement JZ
