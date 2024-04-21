@@ -15,7 +15,7 @@ namespace Breadboard8
         ALU alu;
         uint8_t bus; // The cpu's internal data bus
         std::array<uint8_t, 16> ram;
-        std::array<uint8_t, 256> rom;
+        std::array<uint8_t, 2048> rom;
 
         // Registers
         uint8_t A, B, OUT;
