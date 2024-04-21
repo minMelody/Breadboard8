@@ -4,13 +4,14 @@ void Breadboard8::CPU::reset()
 {
     PC = IR = 0x00;
     A = B = OUT = 0x00;
-    ZF = CF = 0;
+    HALT = OE = ZF = CF = 0;
     alu.reset();
     ram.fill(0x00);
 }
 
 void Breadboard8::CPU::tick()
 {
+    OE = false;
     if (ubitset(ucode::HLT))
     {
         HALT = true;
@@ -53,7 +54,11 @@ void Breadboard8::CPU::uins_in()
     if (ubitset(ucode::RI)) ram[MAR] = bus;
     if (ubitset(ucode::II)) IR = bus;
     if (ubitset(ucode::BI)) B = bus;
-    if (ubitset(ucode::OI)) OUT = bus;
+    if (ubitset(ucode::OI))
+    {
+        OUT = bus;
+        OE = true;
+    }
     if (ubitset(ucode::FI))
     {
         CF = (alu.sum._16 & 0x100) > 0;

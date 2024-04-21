@@ -7,14 +7,14 @@
 
 using namespace Breadboard8;
 
-template<std::size_t SIZE>
-void read_binary(std::array<uint8_t, SIZE>& dest, std::string path)
+template<std::size_t _size>
+void read_binary(std::array<uint8_t, _size>& dest, std::string path)
 {
     std::ifstream f(path, std::ios::binary | std::ios::ate);
 	if (f.is_open())
 	{
 		std::size_t fileSize = f.tellg();
-		std::size_t romSize = (fileSize < dest.size()) ? fileSize : SIZE;
+		std::size_t romSize = (fileSize < _size) ? fileSize : _size;
 		char buffer[romSize];
         
         f.seekg(0, std::ios_base::beg);
@@ -32,21 +32,14 @@ void read_binary(std::array<uint8_t, SIZE>& dest, std::string path)
 
 int main(int argc, const char* argv[])
 {
-    std::string ROM_IMAGE = "rom.out";
-    if (argc > 1)
-    {
-        ROM_IMAGE = argv[2];
-    }
+    std::string _PROGRAM = argv[1];
+    std::string _ROMFILE = (argc > 2) ? argv[2] : "rom.out";
 
     Clock clk {50};
     CPU cpu{};
-    read_binary(cpu.rom, ROM_IMAGE);
+    read_binary(cpu.rom, _ROMFILE);
     cpu.reset();
-
-    cpu.ram[0x0] = 0x58; // LDI 8
-    cpu.ram[0x1] = 0x3f; // SUB 15
-    cpu.ram[0x2] = 0x61; // JMP 1
-    cpu.ram[0xf] = 0x02;
+    read_binary(cpu.ram, _PROGRAM);
 
     while (!cpu.HALT)
     {
@@ -54,9 +47,7 @@ int main(int argc, const char* argv[])
         
         cpu.tick();
 
-        if (cpu.step > 0) continue;
-        printf("%d  %c%c\n", cpu.A, cpu.CF ? 'C' : '.', cpu.ZF ? 'Z' : '.');
-        if (cpu.PC == 0) std::cout << "\n";
+        if (cpu.OE) printf("%d  %c%c\n", cpu.OUT, cpu.CF ? 'C' : '.', cpu.ZF ? 'Z' : '.');
     }
 
     return 0;

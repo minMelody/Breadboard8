@@ -24,7 +24,7 @@ namespace Breadboard8
         int PC;      // program counter
 
         // Flags
-        bool ZF, CF, HALT;
+        bool ZF, CF, HALT, OE;
         
         // Control logic
         uint16_t decode_instruction(uint8_t opcode);
