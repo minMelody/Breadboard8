@@ -12,6 +12,6 @@ The cpu runs using a program binary and a rom image with the command `./bb8 <pro
 
 ![example of conditional jump not yet implemented](screenshot-no-jc.png)
 
-Meanwhile a working conditional jump carry will execute on a loop.
+Meanwhile a working jump if carry will execute on a loop.
 
 ![example of working jump carry with Breadboard8mini](screenshot-working-jc.png)
