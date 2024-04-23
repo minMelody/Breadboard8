@@ -11,31 +11,41 @@ template<std::size_t _size>
 void read_binary(std::array<uint8_t, _size>& dest, std::string path)
 {
     std::ifstream f(path, std::ios::binary | std::ios::ate);
-	if (f.is_open())
-	{
-		std::size_t fileSize = f.tellg();
-		std::size_t romSize = (fileSize < _size) ? fileSize : _size;
-		char buffer[romSize];
+    if (f.is_open())
+    {
+        std::size_t fileSize = f.tellg();
+        std::size_t romSize = (fileSize < _size) ? fileSize : _size;
+        char buffer[romSize];
         
         f.seekg(0, std::ios_base::beg);
         f.read(&buffer[0], romSize);
-		f.close();
-
+        f.close();
+        
         memcpy(dest.begin(), buffer, romSize);
 
-		return;
-	}
+        return;
+    }
 
-	std::cout << "Unable to read ROM image.";
-	exit(1);
+    std::cout << "Unable to read binary file." << std::endl;
+    exit(2);
 }
 
 int main(int argc, const char* argv[])
 {
+    if (argc < 3)
+    {
+        std::cout << "usage: ./bb8 <program> <speed> <(opt) rom>\n"
+                  << "<program>   - compiled binary file\n"
+                  << "<speed>     - clock speed in hertz\n"
+                  << "<(opt) rom> - ROM image containing microprogram, loads 'rom.out' by default";
+        return 1;
+    }
+    
     std::string _PROGRAM = argv[1];
-    std::string _ROMFILE = (argc > 2) ? argv[2] : "rom.out";
+    unsigned int _SPEED  = std::stoi(argv[2]);
+    std::string _ROMFILE = (argc > 3) ? argv[3] : "rom.out";
 
-    Clock clk {50};
+    Clock clk {_SPEED};
     CPU cpu{};
     read_binary(cpu.rom, _ROMFILE);
     cpu.reset();
