@@ -6,7 +6,7 @@
 
 namespace Breadboard8
 {
-    class CPU // is really just the breadboard's bus
+    class CPU
     {
     public:
         void reset();
@@ -23,8 +23,10 @@ namespace Breadboard8
         uint8_t IR;  // instruction register
         int PC;      // program counter
 
-        // Flags
-        bool ZF, CF, HALT, OE;
+        // CPU flags
+        bool ZF, CF;
+        // Emulation flags
+        bool HALT, OE;
         
         // Control logic
         uint16_t decode_instruction(uint8_t opcode);

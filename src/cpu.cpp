@@ -32,10 +32,11 @@ void Breadboard8::CPU::tick()
 
 uint16_t Breadboard8::CPU::decode_instruction(uint8_t opcode)
 {
-    uint8_t index = (opcode << 3) | step;
-    uint8_t cw_h = rom[index];
-    uint8_t cw_l = rom[index + 0x80];
-    return (cw_h << 8) | cw_l;
+    uint8_t flags = ZF << 1 | CF;
+    uint16_t address = (flags << 8) | (opcode << 3) | (step & 0x07);
+    uint8_t hi = rom[address];
+    uint8_t lo = rom[address | 0x80];
+    return (hi << 8) | lo;
 }
 
 // all output micro instructions happen first
