@@ -1,1 +1,2 @@
-g++ -g src/*.cpp -I src/include -std=c++20 -o ./bb8
+g++ src/*.cpp -I src/include -std=c++11 -o ./bb8
+py makerom.py
