@@ -39,7 +39,7 @@ uint16_t Breadboard8::CPU::decode_instruction(uint8_t flags, uint8_t opcode, uin
     return (hi << 8) | lo;
 }
 
-// All 'resgister out' micro-instructions happen first as they're not tied to the clock
+// All 'register out' micro-instructions happen first as they're not tied to the clock
 void Breadboard8::CPU::uins_out()
 {
     if (ubitset(ucode::CO)) bus = PC;
