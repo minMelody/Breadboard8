@@ -8,7 +8,8 @@ namespace Breadboard8
     public:
         void reset();
         void calc(uint8_t A, uint8_t B, bool substract);
-        bool substract = 0;
+        void update_flags(bool& ZF, bool& CF);
+        bool subtract = 0;
 
         union
         {

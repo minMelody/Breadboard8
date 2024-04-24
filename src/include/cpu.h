@@ -1,5 +1,4 @@
 #pragma once
-#include <cstdint>
 #include <array>
 
 #include "alu.h"
@@ -10,6 +9,7 @@ namespace Breadboard8
     {
     public:
         void reset();
+        // Step one clock cycle
         void tick();
 
         ALU alu;
@@ -19,9 +19,9 @@ namespace Breadboard8
 
         // Registers
         uint8_t A, B, OUT;
-        uint8_t MAR; // memory address register
-        uint8_t IR;  // instruction register
-        int PC;      // program counter
+        uint8_t MAR;     // memory address register
+        uint8_t IR;      // instruction register
+        unsigned int PC; // program counter
 
         // CPU flags
         bool ZF, CF;
@@ -29,10 +29,12 @@ namespace Breadboard8
         bool HALT, OE;
         
         // Control logic
-        uint16_t decode_instruction(uint8_t opcode);
-        uint8_t step;
-        uint16_t control_word;
         #include "microcode.h"
+        uint16_t control_word;
+        uint8_t step;
+        // Takes in the 2 bits flags register, 4 bits opcode and 3 bits step counter.
+        // Returns the control word stored at the corresponding address.
+        uint16_t decode_instruction(uint8_t flags, uint8_t opcode, uint8_t step);
 
     protected:
         void uins_out(), uins_in();

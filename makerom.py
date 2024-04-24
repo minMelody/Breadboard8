@@ -1,5 +1,5 @@
 # builds a ROM image file
-# based on Ben Eater's eeprom programmer https://github.com/beneater/eeprom-programmer
+# based on Ben Eater's eeprom programmer: https://github.com/beneater/eeprom-programmer
 
 from sys import argv
 import numpy
@@ -26,14 +26,12 @@ CO  = 0b0000000000000100  # Program counter out
 J   = 0b0000000000000010  # Jump (program counter in)
 FI  = 0b0000000000000001  # Flags in
 
-# helper variables to make editing specific flag combinations easier to read
+# helper variables
 FLAGS_Z0C0 = 0
 FLAGS_Z0C1 = 1
 FLAGS_Z1C0 = 2
 FLAGS_Z1C1 = 3
-
-# opcodes for Jump if Carry and Jump if Zero
-# these need to match the corresponding line in template
+# opcodes for Jump if Carry and Jump if Zero need to match the corresponding lines in template
 JC = 0b0111
 JZ = 0b1000
 
@@ -72,19 +70,19 @@ ucode[FLAGS_Z1C1] = numpy.copy(template)
 ucode[FLAGS_Z1C1][JC][2] = IO|J
 ucode[FLAGS_Z1C1][JZ][2] = IO|J
 
-# create rom image
-buffer = bytearray([0] * 1024)
-for address in range(len(buffer)):
+# create ROM image
+ROM = bytearray([0] * 1024)
+for address in range(len(ROM)):
     flags       = (address & 0b1100000000) >> 8
     byte_sel    = (address & 0b0010000000) >> 7
     instruction = (address & 0b0001111000) >> 3
     step        = (address & 0b0000000111)
     
     if (byte_sel):
-        buffer[address] = ucode[flags][instruction][step] & 0x00FF
+        ROM[address] = ucode[flags][instruction][step] & 0x00FF
     else:
-        buffer[address] = ucode[flags][instruction][step] >> 8
+        ROM[address] = ucode[flags][instruction][step] >> 8
 
 with open(outFilename, "wb") as f:
-    f.write(buffer)
+    f.write(ROM)
 f.close()

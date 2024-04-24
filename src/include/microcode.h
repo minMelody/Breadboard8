@@ -1,4 +1,5 @@
 #pragma once
+// Defines the micro-instucions
 enum ucode {
     HLT= 0b1000000000000000, // Halt clock
     MI = 0b0100000000000000, // Memory address register in

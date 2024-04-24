@@ -42,10 +42,10 @@ int main(int argc, const char* argv[])
     }
     
     std::string _PROGRAM = argv[1];
-    unsigned int _SPEED  = std::stoi(argv[2]);
+    unsigned int _CLKSPD = std::stoi(argv[2]);
     std::string _ROMFILE = (argc > 3) ? argv[3] : "rom.out";
 
-    Clock clk {_SPEED};
+    Clock clk {_CLKSPD};
     CPU cpu{};
     read_binary(cpu.rom, _ROMFILE);
     cpu.reset();
