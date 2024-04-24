@@ -10,12 +10,12 @@ Run the emulator using `./bb8 <program file> <clock speed> <(optional)rom file>`
 
 The makerom python script is based on Ben Eater's arduino [EEPROM programmer](https://github.com/beneater/eeprom-programmer).
 Edit the template to add instructions.<br>
-When changing the micro-instruction definitions make sure to edit both the python script and 'microcode.h'.
+When changing the micro-instruction definitions make sure to edit both the python script and 'src/include/microcode.h'.
 
 Running `py makerom.py` outputs the rom image in 'rom.out', unless a different file is specified.
 
-## Running the test program
-`test_conditional.out` is designed to output all zeros once a value of 128 is reached when the microcode contains no conditional jump instruction.
+## Test program
+When the microcode contains no jump if carry, `shiftleft.out` outputs all zeros once a value greater than 128 is reached:
 
 ![example of conditional jump not implemented](screenshot-no-jc.png)
 
