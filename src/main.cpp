@@ -32,7 +32,7 @@ void read_binary(std::array<uint8_t, _size>& dest, std::string path)
 
 int main(int argc, const char* argv[])
 {
-    if (argc < 3)
+    if (argc < 3 || std::stoi(argv[2]) == 0)
     {
         std::cout << "usage: ./bb8 <program> <speed> <(opt) rom>\n"
                   << "<program>   - compiled binary file\n"
