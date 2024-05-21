@@ -77,7 +77,7 @@ for address in range(len(ROM)):
     byte_sel    = (address & 0b0010000000) >> 7
     instruction = (address & 0b0001111000) >> 3
     step        = (address & 0b0000000111)
-    
+
     if (byte_sel):
         ROM[address] = ucode[flags][instruction][step] & 0x00FF
     else:
