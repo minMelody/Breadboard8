@@ -2,9 +2,9 @@
 
 This is an in-depth emulator of Ben Eater's [8 bit breadboard computer](https://youtube.com/playlist?list=PLowKtXNTBypGqImE405J2565dvjafglHU) down to the micro instructions.
 
-Build the project by running `./make.sh`, this creates a 'bb8.exe' executable using g++, as well as the ROM image.
+Build the project by running make, this creates a 'bb8' & 'eas' executables using g++, as well as the ROM image making use of numpy.
 
-Run the emulator using `./bb8 <program file> <clock speed> <(optional)rom file>`. It loads 'rom.out' by default.
+Run the emulator using `./bb8.exe <program file> <clock speed> [(optional)rom file]`. It loads 'rom.out' by default.
 
 ## Editing the microcode
 
@@ -12,7 +12,11 @@ The makerom python script is based on Ben Eater's arduino [EEPROM programmer](ht
 Edit the template to add instructions.<br>
 When changing the micro-instruction definitions make sure to edit both the python script and 'src/include/microcode.h'.
 
-Running `py makerom.py` outputs the rom image in 'rom.out', unless a different file is specified.
+Running `python3 makerom.py` outputs the rom image in 'rom.out', unless a different file is specified.
+
+## Writing your own program
+See [the readme file](https://github.com/minMelody/Breadboard8/blob/main/assembler/README.md) for assembler syntax.
+Run `./eas.exe <source code> [(optional)output path]` to assemble your code. If no output path is specified a `a.out` file will be created.
 
 ## Test program
 When the microcode contains no jump if carry, `shiftleft.out` outputs all zeros once a value greater than 128 is reached:
