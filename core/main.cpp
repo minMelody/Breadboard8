@@ -33,10 +33,10 @@ int main(int argc, const char* argv[])
 {
     if (argc < 3 || std::stoi(argv[2]) == 0)
     {
-        std::cout << "usage: ./bb8 <program> <speed> <(opt) rom>\n"
+        std::cout << "usage: ./bb8 <program> <speed> [rom]\n"
                   << "<program>   - compiled binary file\n"
                   << "<speed>     - clock speed in hertz\n"
-                  << "<(opt) rom> - ROM image containing microprogram, loads 'rom.out' by default"
+                  << "[rom] - ROM image containing microprogram, loads 'rom.out' by default"
                   << std::endl;
         return EXIT_FAILURE;
     }
