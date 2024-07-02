@@ -10,7 +10,7 @@ Run the emulator using `./bb8.exe <program file> <clock speed> [(optional)rom fi
 
 The makerom python script is based on Ben Eater's arduino [EEPROM programmer](https://github.com/beneater/eeprom-programmer).
 Edit the template to add instructions.<br>
-When changing the micro-instruction definitions make sure to edit both the python script and 'src/include/microcode.h'.
+When changing the micro-instruction definitions make sure to edit both the python script and 'core/include/microcode.h'.
 
 Running `python3 makerom.py` outputs the rom image in 'rom.out', unless a different file is specified.
 
