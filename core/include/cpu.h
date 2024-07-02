@@ -5,6 +5,9 @@
 
 namespace Breadboard8
 {
+    extern bool pause;
+    extern bool running;
+    extern bool reset;
     class CPU
     {
     public:
@@ -19,15 +22,15 @@ namespace Breadboard8
 
         // Registers
         uint8_t A, B, OUT;
-        uint8_t MAR;        // memory address register
-        uint8_t IR;         // instruction register
+        uint8_t MAR;   // memory address register
+        uint8_t IR;    // instruction register
         uint8_t PC;    // program counter
 
         // CPU flags
         bool ZF, CF;
         // Emulation flags
         bool HALT, OE;
-        
+
         // Control logic
         #include "microcode.h"
         uint16_t control_word;

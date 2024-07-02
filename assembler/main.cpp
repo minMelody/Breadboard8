@@ -8,10 +8,9 @@ int main(int argc, const char* argv[])
 {
     if (argc < 2)
     {
-        std::cout << "usage: ./eas <program> [outfile]\n"
+        std::cout << "usage: ./eas <program> <(opt) outfile>\n"
                   << "<program> - assembly file\n"
-                  << "[outfile] - output file path, 'a.out' by default"
-                  << std::endl;
+                  << "<(opt) outfile> - output file path, 'a.out' by default";
         return EXIT_FAILURE;
     }
 

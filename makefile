@@ -1,8 +1,8 @@
-all: bb8.exe eas.exe rom.out
+all: bb8 eas rom.out
 
-bb8.exe : core core/include
-	g++ core/*.cpp -I core/include -std=c++11 -o ./bb8.exe
-eas.exe : assembler
-	g++ assembler/*.cpp -std=c++20 -o ./eas.exe
+bb8 : core core/include
+	g++ core/*.cpp -Icore/include -lncurses -std=c++11 -o ./bb8
+eas : assembler
+	g++ assembler/*.cpp -std=c++20 -o ./eas
 rom.out : makerom.py
 	python3 makerom.py
