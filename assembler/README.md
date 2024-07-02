@@ -32,7 +32,7 @@ $F        ; Will not work
 ```
 
 # Example program: adding 14, 28 and 2
-A simple program adding two numbers that are located at the end of memory would look something like this:
+A simple program adding three numbers that are located at the end of memory would look something like this:
 ```
   lda a
   add b
