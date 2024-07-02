@@ -6,6 +6,9 @@ Build the project by running make, this creates a 'bb8' & 'eas' executables usin
 
 Run the emulator using `./bb8.exe <program file> <clock speed> [(optional)rom file]`. It loads 'rom.out' by default.
 
+## Screenshot
+![image](https://github.com/minMelody/Breadboard8/assets/138899007/e4818787-3065-463a-a55a-05b6813acf43)
+
 ## Editing the microcode
 
 The makerom python script is based on Ben Eater's arduino [EEPROM programmer](https://github.com/beneater/eeprom-programmer).
