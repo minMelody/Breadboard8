@@ -5,8 +5,6 @@
 #include <cstring>
 #include <algorithm>
 
-//#include "cpu.h"
-//#include "clock.h"
 #include "ui.h"
 
 template<std::size_t _size>
@@ -80,10 +78,10 @@ int main(int argc, const char* argv[])
 {
     if (argc < 3)
     {
-        std::cout << "usage: ./bb8 <program> <speed> <(opt) rom>\n"
+        std::cout << "usage: ./bb8 <program> <speed> [rom image]\n"
                   << "<program>   - compiled binary file\n"
                   << "<speed>     - clock speed in hertz\n"
-                  << "<(opt) rom> - ROM image containing microprogram, loads 'rom.out' by default"
+                  << "[rom image] - ROM image containing microprogram, loads 'rom.out' by default"
                   << std::endl;
         return EXIT_FAILURE;
     }
